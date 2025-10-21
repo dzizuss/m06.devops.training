@@ -1,12 +1,12 @@
-# Module 5 - Deployment strategies
+# Module 6 - Terraform essentials
 
-**Goal**: Learn deployment strategies
+**Goal**: Learn Terraform
 
 ## Steps
 
 Each folder contains an exercise. Do them in the following order:
 
-- `1-environment`
-- `2-blue-green-docker`
-- `3-canary-deployment`
-- `4-blue-green-kubernetes`
+- `1-localstack`
+- `2-terraform-apply`
+- `3-terraform-outputs`
+- `4-terraform-cicd`

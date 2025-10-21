@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Waiting for LocalStack to be ready..."
+until curl -s http://localhost:4566/health | grep -q '"s3": "running"'; do
+  curl -s http://localhost:4566/health
+  echo "LocalStack not ready yet, waiting 5 seconds..."
+  sleep 5
+done
+echo "LocalStack is ready!"
