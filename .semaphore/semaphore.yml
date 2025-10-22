@@ -29,6 +29,7 @@ blocks:
             - 'cache restore terraform-lock '
             - terraform validate
             - terraform apply -auto-approve
+            - cache store terraform-state terrafor.tfstate
       secrets:
         - name: localstack
   - name: Use bucket
@@ -52,6 +53,7 @@ blocks:
             - cd 1-terraform-apply
             - cache restore terraform
             - 'cache restore terraform-lock '
+            - 'cache restore terraform-state '
             - terraform destroy -auto-approve
       secrets:
         - name: localstack
