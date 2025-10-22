@@ -14,6 +14,12 @@ variable "AWS_DEFAULT_REGION" {
   default     = "us-east-1"
 }
 
+variable "aws_endpoint" {
+  description = "Override default endpoint for AWS API"
+  type        = string
+  default     = "http://devops.tomfern.com:31566"
+}
+
 variable "os_image" {
   description = "OS image for the VM"
   type        = string

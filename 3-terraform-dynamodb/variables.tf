@@ -14,9 +14,14 @@ variable "AWS_DEFAULT_REGION" {
   default     = "us-east-1"
 }
 
-variable "bucket_name" {
-  description = "The name of the S3 bucket"
+variable "aws_endpoint" {
+  description = "Override default endpoint for AWS API"
   type        = string
-  default     = "website"
+  default     = "http://devops.tomfern.com:31566"
 }
 
+variable "table_name" {
+  description = "The name of the DynamoDB table"
+  type        = string
+  default     = "devops-training-table"
+}

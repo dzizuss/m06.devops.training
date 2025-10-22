@@ -12,13 +12,12 @@ provider "aws" {
   s3_force_path_style            = true
 
   endpoints {
-    s3   = "http://devops.tomfern.com:31566"
-    sts  = "http://devops.tomfern.com:31566"
-    iam  = "http://devops.tomfern.com:31566"
-    ec2  = "http://devops.tomfern.com:31566"
-    sqs  = "http://devops.tomfern.com:31566"
-    sns  = "http://devops.tomfern.com:31566"
-    # add any other services you use
+    s3   = var.aws_endpoint
+    sts  = var.aws_endpoint
+    iam  = var.aws_endpoint
+    ec2  = var.aws_endpoint
+    sqs  = var.aws_endpoint
+    sns  = var.aws_endpoint
   }
 }
 

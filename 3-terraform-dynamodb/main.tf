@@ -9,10 +9,10 @@ provider "aws" {
   skip_metadata_api_check        = true
   skip_region_validation         = true
   skip_requesting_account_id     = true
-  s3_force_path_style            = true
 
   endpoints {
     s3   = var.aws_endpoint
+    dynamodb   = var.aws_endpoint
     sts  = var.aws_endpoint
     iam  = var.aws_endpoint
     ec2  = var.aws_endpoint
@@ -21,12 +21,13 @@ provider "aws" {
   }
 }
 
-resource "aws_instance" "machine" {
-  # ami           = "ami-04e914639d0cca79a"
-  # instance_type = "t2.micro"
-  ami           = var.os_image
-  instance_type = var.machine_size
-  tags = {
-    Name = var.machine_name
+resource "aws_dynamodb_table" "example" {
+  name         = var.table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "user_id"
+
+  attribute {
+    name = "user_id"
+    type = "S"
   }
 }

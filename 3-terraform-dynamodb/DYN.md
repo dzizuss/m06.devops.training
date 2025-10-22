@@ -1,0 +1,3 @@
+  - aws --endpoint-url=http://devops.tomfern.com:31566 dynamodb list-tables
+  - aws --endpoint-url=http://devops.tomfern.com:31566 dynamodb describe-table --table-name $(terraform output -raw table_name)
+  - aws --endpoint-url=http://devops.tomfern.com:31566 dynamodb scan --table-name $(terraform output -raw table_name)
