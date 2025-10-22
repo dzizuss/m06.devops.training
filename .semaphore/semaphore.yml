@@ -13,7 +13,7 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - terraform init
-            - cache store terraform .terraform
+            - cache store terraform .terraform .terraform.lock.hcl
       secrets:
         - name: localstack
   - name: Create Bucket
