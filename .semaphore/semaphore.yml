@@ -28,6 +28,8 @@ blocks:
             - 'cache restore terraform-lock '
             - terraform validate
             - terraform apply -auto-approve
+      secrets:
+        - name: localstack
   - name: Use bucket
     task:
       jobs:
@@ -37,6 +39,8 @@ blocks:
             - 'aws s3 cp README.md s3://my-test-bucket/'
             - 'aws s3 ls s3://my-test-bucket'
             - 'aws s3 rm s3://my-test-bucket/README.md'
+      secrets:
+        - name: localstack
   - name: Destroy Bucket
     task:
       jobs:
@@ -47,3 +51,5 @@ blocks:
             - cache restore terraform
             - 'cache restore terraform-lock '
             - terraform destroy -auto-approve
+      secrets:
+        - name: localstack
