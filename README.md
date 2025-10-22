@@ -6,7 +6,6 @@
 
 Each folder contains an exercise. Do them in the following order:
 
-- `1-localstack`
-- `2-terraform-apply`
-- `3-terraform-outputs`
-- `4-terraform-cicd`
+- `1-terraform-apply`
+- `2-terraform-ec2`
+- `3-terraform-dynamodb`
