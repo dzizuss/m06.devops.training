@@ -13,7 +13,8 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - terraform init
-            - cache store terraform .terraform .terraform.lock.hcl
+            - 'cache store terraform .terraform '
+            - cache store terraform-lock .terraform.lock.hcl
       secrets:
         - name: localstack
   - name: Create Bucket
@@ -24,6 +25,7 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - cache restore terraform
+            - 'cache restore terraform-lock '
             - terraform validate
             - terraform apply -auto-approve
   - name: Use bucket
@@ -43,4 +45,5 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - cache restore terraform
+            - 'cache restore terraform-lock '
             - terraform destroy -auto-approve
