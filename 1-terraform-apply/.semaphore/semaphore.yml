@@ -11,20 +11,21 @@ blocks:
         - name: Init
           commands:
             - checkout
-            - cd 1-terraform-apply
+            - cd 3-static-site
             - terraform init
             - 'cache store terraform .terraform '
             - cache store terraform-lock .terraform.lock.hcl
             - cache store terraform-state terrafor.tfstate
       secrets:
         - name: localstack
+    dependencies: []
   - name: Create Bucket
     task:
       jobs:
         - name: Terraform apply
           commands:
             - checkout
-            - cd 1-terraform-apply
+            - cd 3-static-site
             - cache restore terraform
             - 'cache restore terraform-lock '
             - terraform validate
@@ -32,6 +33,8 @@ blocks:
             - cache store terraform-state terraform.tfstate
       secrets:
         - name: localstack
+    dependencies:
+      - Terraform init
   - name: Use bucket
     task:
       jobs:
@@ -44,6 +47,9 @@ blocks:
             - 'aws s3 rm s3://my-test-bucket/README.md'
       secrets:
         - name: localstack
+    run:
+      when: 'false'
+    dependencies: []
   - name: Destroy Bucket
     task:
       jobs:
@@ -57,3 +63,7 @@ blocks:
             - terraform destroy -auto-approve
       secrets:
         - name: localstack
+    dependencies:
+      - Use bucket
+    run:
+      when: 'false'
