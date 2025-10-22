@@ -13,7 +13,7 @@ provider "aws" {
 
   endpoints {
     s3   = "http://devops.tomfern.com:31566"
-    sts  = "http://devops.tomfern.com:31566"
+    ecr  = "http://devops.tomfern.com:31566"
     iam  = "http://devops.tomfern.com:31566"
     ec2  = "http://devops.tomfern.com:31566"
     sqs  = "http://devops.tomfern.com:31566"
@@ -22,12 +22,15 @@ provider "aws" {
   }
 }
 
-resource "aws_s3_bucket" "example" {
-  bucket = var.bucket_name
+resource "aws_ecr_repository" "app_repo" {
+  name                 = "demo-ecr-repo"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration { scan_on_push = false }
 }
 
-resource "aws_s3_bucket_acl" "example_acl" {
-  bucket = aws_s3_bucket.example.id
-  acl    = "private"
-}
+# resource "aws_ecr_lifecycle_policy" "repo_lifecycle" {
+#   repository = aws_ecr_repository.app_repo.name
+#   policy     = file("${path.module}/lifecycle.json")
+# }
 

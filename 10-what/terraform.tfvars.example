@@ -1,0 +1,10 @@
+AWS_ACCESS_KEY_ID      = "test"
+AWS_SECRET_ACCESS_KEY  = "test"
+AWS_DEFAULT_REGION     = "us-east-1"
+localstack_endpoint    = "http://devops.tomfern.com:31566"
+db_identifier          = "training-rds"
+db_name                = "training_app"
+db_username            = "training_user"
+db_password            = "training_password"
+allowed_cidr_blocks    = ["0.0.0.0/0"]
+
