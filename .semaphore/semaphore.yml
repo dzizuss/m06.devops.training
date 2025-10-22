@@ -29,7 +29,7 @@ blocks:
             - 'cache restore terraform-lock '
             - terraform validate
             - terraform apply -auto-approve
-            - cache store terraform-state terrafor.tfstate
+            - cache store terraform-state terraform.tfstate
       secrets:
         - name: localstack
   - name: Use bucket
