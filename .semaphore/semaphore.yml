@@ -1,0 +1,46 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2204
+blocks:
+  - name: Terraform init
+    task:
+      jobs:
+        - name: Init
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - terraform init
+            - cache store terraform .terraform
+      secrets:
+        - name: localstack
+  - name: Create Bucket
+    task:
+      jobs:
+        - name: Terraform apply
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - cache restore terraform
+            - terraform validate
+            - terraform apply -auto-approve
+  - name: Use bucket
+    task:
+      jobs:
+        - name: Create/delete files
+          commands:
+            - 'alias aws="aws --endpoint-url=http://devops.tomfern.com:31566"'
+            - 'aws s3 cp README.md s3://my-test-bucket/'
+            - 'aws s3 ls s3://my-test-bucket'
+            - 'aws s3 rm s3://my-test-bucket/README.md'
+  - name: Destroy Bucket
+    task:
+      jobs:
+        - name: Terraform destroy
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - cache restore terraform
+            - terraform destroy -auto-approve
