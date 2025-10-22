@@ -15,6 +15,7 @@ blocks:
             - terraform init
             - 'cache store terraform .terraform '
             - cache store terraform-lock .terraform.lock.hcl
+            - cache store terraform-state terrafor.tfstate
       secrets:
         - name: localstack
   - name: Create Bucket
