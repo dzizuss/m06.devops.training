@@ -5,19 +5,6 @@ agent:
     type: f1-standard-2
     os_image: ubuntu2204
 blocks:
-  - name: 'Block #1'
-    task:
-      jobs:
-        - name: 'Job #1'
-          commands:
-            - checkout
-            - cd 1-terraform-apply
-            - terraform init
-            - ls -la
-            - artifact push workflow .terraform
-            - artifact push workflow .terraform.lock.hcl
-      secrets:
-        - name: localstack
   - name: 'Block #2'
     task:
       secrets:
@@ -39,3 +26,13 @@ blocks:
             - 'aws s3 cp README.md s3://my-test-bucket/'
             - terraform destroy -auto-approve
             - aws s3 ls
+        - name: 'Job #2'
+          commands:
+            - checkout
+            - cd 2-terraform-ec2
+            - terraform init
+            - ls -la
+            - terraform validate
+            - terraform apply -auto-approve
+            - 'alias aws="aws --endpoint-url=http://devops.tomfern.com:31566"'
+            - aws ec2 describe-instances
