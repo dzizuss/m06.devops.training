@@ -35,6 +35,6 @@ variable "machine_size" {
 variable "machine_name" {
   description = "Name of the VM"
   type        = string
-  default     = "my-example-machine"
+  default     = "jesus-christ"
 }
 
