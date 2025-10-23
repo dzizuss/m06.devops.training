@@ -31,3 +31,9 @@ blocks:
             - ls -la
             - terraform validate
             - terraform apply -auto-approve
+            - 'alias aws="aws --endpoint-url=http://devops.tomfern.com:31566"'
+            - aws s3 ls
+            - 'aws s3 cp README.md s3://my-test-bucket/'
+            - 'aws s3 ls s3://my-test-bucket/'
+            - 'aws s3 rm s3://my-test-bucket/README.md'
+            - 'aws s3 cp README.md s3://my-test-bucket/'
