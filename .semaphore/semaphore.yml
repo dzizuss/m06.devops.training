@@ -1,0 +1,33 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2204
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - terraform init
+            - ls -la
+            - artifact push workflow .terraform
+            - artifact push workflow .terraform.lock.hcl
+      secrets:
+        - name: localstack
+  - name: 'Block #2'
+    task:
+      secrets:
+        - name: localstack
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - terraform init
+            - ls -la
+            - terraform validate
+            - terraform apply -auto-approve
