@@ -37,3 +37,5 @@ blocks:
             - 'aws s3 ls s3://my-test-bucket/'
             - 'aws s3 rm s3://my-test-bucket/README.md'
             - 'aws s3 cp README.md s3://my-test-bucket/'
+            - terraform destroy -auto-approve
+            - aws s3 ls
