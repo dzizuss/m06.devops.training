@@ -24,6 +24,7 @@ blocks:
           commands:
             - checkout
             - cd 1-terraform-apply
+            - ls -la
             - artifact pull workflows .terraform
             - artifact pull workflows .terraform.lock.hcl
             - terraform validate
