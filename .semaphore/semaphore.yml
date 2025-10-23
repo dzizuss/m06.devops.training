@@ -35,4 +35,4 @@ blocks:
             - terraform validate
             - terraform apply -auto-approve
             - 'alias aws="aws --endpoint-url=http://devops.tomfern.com:31566"'
-            - aws ec2 describe-instances
+            - aws ec2 describe-instances --region us-east-1
