@@ -28,3 +28,5 @@ blocks:
             - artifact pull workflows .terraform.lock.hcl
             - terraform validate
             - terraform apply -auto-approve
+      secrets:
+        - name: localstack
