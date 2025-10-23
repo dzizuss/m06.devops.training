@@ -13,5 +13,18 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - terraform init
+            - artifact push workflows .terraform
+            - artifact push workflows .terraform.lock.hcl
       secrets:
         - name: localstack
+  - name: 'Block #2'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - checkout
+            - cd 1-terraform-apply
+            - artifact pull workflows .terraform
+            - artifact pull workflows .terraform.lock.hcl
+            - terraform validate
+            - terraform apply -auto-approve
