@@ -13,6 +13,7 @@ blocks:
             - checkout
             - cd 1-terraform-apply
             - terraform init
+            - ls -la
             - artifact push workflow .terraform
             - artifact push workflow .terraform.lock.hcl
       secrets:
