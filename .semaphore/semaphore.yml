@@ -11,3 +11,6 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
+            - terraform init
+      secrets:
+        - name: localstack
